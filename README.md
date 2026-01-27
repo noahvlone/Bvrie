@@ -148,5 +148,5 @@ This project is licensed under the MIT License.
 ---
 
 <p align="center">
-  Built with ❤️ for Data Scientists
+  Built for Data Scientists
 </p>
