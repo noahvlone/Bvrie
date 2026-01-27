@@ -46,7 +46,7 @@ A powerful, interactive tool for data scientists to automatically analyze tabula
 
 1. **Clone or navigate to the project directory:**
 ```bash
-cd "c:\Users\Farhan Ramadhan\Desktop\Bvrie"
+cd Bvrie
 ```
 
 2. **Create a virtual environment (recommended):**
