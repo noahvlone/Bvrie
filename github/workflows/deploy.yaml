@@ -13,7 +13,7 @@ jobs:
         with:
           host: 103.150.226.34
           username: mahasiswa
-          key: ${{ secrets.MAHASISWA_SSH_KEY }}
+          key: ${{ secrets.ssh_mahasiswa_key }}
           script_stop: true
           script: |
             set -e
