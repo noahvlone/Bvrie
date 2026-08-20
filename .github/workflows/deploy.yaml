@@ -20,8 +20,6 @@ jobs:
           ssh mahasiswa@103.150.226.34 << 'ENDSSH'
             cd ./noah_austin/Bvrie
             pip install -r requirements.txt
-            pkill -f "streamlit run" || true
-            sleep 1
             nohup streamlit run app1.py --server.port 8767 > streamlit.log 2>&1 < /dev/null &
             sleep 2
             echo "Streamlit started"
