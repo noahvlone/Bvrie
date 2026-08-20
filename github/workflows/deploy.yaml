@@ -1,20 +1,28 @@
-name : Deploy Streamlit 
+name: Deploy Streamlit
 
-on : 
-  push : 
-    branches : ["main"]
+on:
+  push:
+    branches: [main]
 
-jobs :
-  deploy : 
-    runs-on : ubuntu-latest
-    steps : 
-      - name: Deploy to Server
-        uses: appleboy/ssh-action@v1
-        th: 
-        host: 103.150.226.34
-        username: mahasiswa
-        key: ${{ secrets.MAHASISWA_SSH_KEY}}
-        script: / 
-          cd ./noah_austin/Bvrie
-          pip install -r requirements.txt
-          pkill -f "streamlit run" || true 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: 103.150.226.34
+          username: mahasiswa
+          key: ${{ secrets.MAHASISWA_SSH_KEY }}
+          script_stop: true
+          script: |
+            set -e
+            cd "$HOME/noah_austin/Bvrie"
+            git pull --ff-only origin main
+            python3 -m pip install --user -r requirements.txt
+            pkill -f "[s]treamlit run app.py" || true
+            nohup python3 -m streamlit run app.py \
+              --server.address 0.0.0.0 \
+              --server.headless true \
+              --server.port 8501 \
+              > streamlit.log 2>&1 &
