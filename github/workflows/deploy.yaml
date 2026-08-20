@@ -1,0 +1,20 @@
+name : Deploy Streamlit 
+
+on : 
+  push : 
+    branches : ["main"]
+
+jobs :
+  deploy : 
+    runs-on : ubuntu-latest
+    steps : 
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v1
+        th: 
+        host: 103.150.226.34
+        username: mahasiswa
+        key: ${{ secrets.MAHASISWA_SSH_KEY}}
+        script: / 
+          cd ./noah_austin/Bvrie
+          pip install -r requirements.txt
+          pkill -f "streamlit run" || true 
